@@ -444,6 +444,8 @@ int main() {
         }
         // получили от клиента запрос на игру другому клиенту
         else if (tmp == "invite") {
+			std::cout << "Обрабатываю инвайт" << std::endl;
+			std::this_thread::sleep_for(100ms);
             std::string invite_login;
             std::getline(ss, tmp, ':');
             int sender_id = std::stoi(tmp);
@@ -495,10 +497,10 @@ int main() {
             }
             else {
 				std::cout << "Ника " + invite_login + " нет в базе" << std::endl;
-                if (sender_id == 1) {
-					std::cout << "Отправляю ошибку игроку" << std::endl;
-                    send_message(main_socket, "Error:LoginNotExist");
-                }
+				std::cout << "Отправляю ошибку игроку" << std::endl;
+				std::this_thread::sleep_for(100ms);
+				
+				send_message(main_socket, "Error:LoginNotExist");
             }
             std::getline(ss, tmp, ':');
         }
